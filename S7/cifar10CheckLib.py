@@ -1,4 +1,6 @@
-def check_predict(net):
+
+
+def check_predict(net, images):
     outputs = net(images)
     _, predicted = torch.max(outputs, 1)
     
