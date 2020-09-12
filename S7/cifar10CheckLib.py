@@ -1,4 +1,4 @@
-
+import torch
 
 def check_predict(net, images):
     outputs = net(images)
