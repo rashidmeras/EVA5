@@ -22,7 +22,7 @@ class CustomS6Model(nn.Module):
     def __init__(self):
 
         #call parent class and initilize
-        super(Net, self).__init__()
+        super(CustomS6Model, self).__init__()
         
         # Layer1:
         self.conv1 = nn.Sequential (nn.Conv2d(1, 32, 3, padding=1),nn.BatchNorm2d(32),nn.ReLU())
