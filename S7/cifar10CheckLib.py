@@ -21,7 +21,7 @@ def check_test_accuracy(net, device, test_loader):
     print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
     
     
-def check_classwise_accuracy(net, device, test_loader):
+def check_classwise_accuracy(net, device, test_loader, classes):
     class_correct = list(0. for i in range(10))
     class_total = list(0. for i in range(10))
     with torch.no_grad():
@@ -34,7 +34,6 @@ def check_classwise_accuracy(net, device, test_loader):
                 label = labels[i]
                 class_correct[label] += c[i].item()
                 class_total[label] += 1
-    
     
     for i in range(10):
         print('Accuracy of %5s : %2d %%' % (classes[i], 100 * class_correct[i] / class_total[i])) 
