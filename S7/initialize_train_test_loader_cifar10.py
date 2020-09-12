@@ -1,5 +1,8 @@
+import torch
+import torchvision.transforms as transforms
+import torchvision
 
-def initialize_train_test_loader_cifar10(batch_size = 4, num_workers=2):
+def train_test_loader(batch_size = 4, num_workers=2):
 
     print("\n Initialize train and test loader with Batch Size:{}".format(batch_size))
 
