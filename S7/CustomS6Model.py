@@ -19,52 +19,31 @@ class CustomS6Model(nn.Module):
     '''
 
     #construct the class
-    def __init__(self, gbn_en):
+    def __init__(self):
 
         #call parent class and initilize
-        super(Net, self).__init__(gbn_en)
-        self.gbn_en = gbn_en
-
-        print("Create the instance of the Net class with GBN = {}".format(gbn_en))
-
+        super(Net, self).__init__()
+        
         # Layer1:
-        if gbn_en:
-            self.conv1 = nn.Sequential (nn.Conv2d(1, 32, 3, padding=1),GhostBatchNorm(32,2),nn.ReLU())
-        else:  
-            self.conv1 = nn.Sequential (nn.Conv2d(1, 32, 3, padding=1),nn.BatchNorm2d(32),nn.ReLU())
+        self.conv1 = nn.Sequential (nn.Conv2d(1, 32, 3, padding=1),nn.BatchNorm2d(32),nn.ReLU())
 
-        # Layer2: 
-        if gbn_en:
-            self.conv2 = nn.Sequential (nn.Conv2d(32, 16, 3),GhostBatchNorm(16,2),nn.ReLU())
-        else:             
-            self.conv2 = nn.Sequential (nn.Conv2d(32, 16, 3),nn.BatchNorm2d(16),nn.ReLU())
+        # Layer2:            
+        self.conv2 = nn.Sequential (nn.Conv2d(32, 16, 3),nn.BatchNorm2d(16),nn.ReLU())
 
         # Max-Pooling layer 
         self.pool1 = nn.MaxPool2d(2, 2)        
 
-        # Layer3:
-        if gbn_en:
-            self.conv3 = nn.Sequential (nn.Conv2d(16, 8, 1),GhostBatchNorm(8,2),nn.ReLU(),nn.Dropout(0.1))
-        else:               
-            self.conv3 = nn.Sequential (nn.Conv2d(16, 8, 1),nn.BatchNorm2d(8),nn.ReLU(),nn.Dropout(0.1))
+        # Layer3:         
+        self.conv3 = nn.Sequential (nn.Conv2d(16, 8, 1),nn.BatchNorm2d(8),nn.ReLU(),nn.Dropout(0.1))
 
-        # Layer4:
-        if gbn_en:
-            self.conv4 = nn.Sequential (nn.Conv2d(8, 16, 3),GhostBatchNorm(16,2),nn.ReLU())
-        else:               
-            self.conv4 = nn.Sequential (nn.Conv2d(8, 16, 3),nn.BatchNorm2d(16),nn.ReLU())
+        # Layer4:  
+        self.conv4 = nn.Sequential (nn.Conv2d(8, 16, 3),nn.BatchNorm2d(16),nn.ReLU())
             
         # Layer5:
-        if gbn_en:
-            self.conv5 = nn.Sequential (nn.Conv2d(16, 14, 3),GhostBatchNorm(14,2),nn.ReLU())
-        else:          
-            self.conv5 = nn.Sequential (nn.Conv2d(16, 14, 3),nn.BatchNorm2d(14),nn.ReLU())
+        self.conv5 = nn.Sequential (nn.Conv2d(16, 14, 3),nn.BatchNorm2d(14),nn.ReLU())
 
-        # Layer6:
-        if gbn_en:
-            self.conv6 = nn.Sequential (nn.Conv2d(14, 10, 3),GhostBatchNorm(10,2),nn.ReLU())
-        else:           
-            self.conv6 = nn.Sequential (nn.Conv2d(14, 10, 3),nn.BatchNorm2d(10),nn.ReLU())
+        # Layer6:     
+        self.conv6 = nn.Sequential (nn.Conv2d(14, 10, 3),nn.BatchNorm2d(10),nn.ReLU())
 
         # Layer7:
         self.conv7 = nn.Sequential (nn.Conv2d(10, 10, 1))            
