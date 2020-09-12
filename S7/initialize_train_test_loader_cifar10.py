@@ -15,8 +15,16 @@ def train_test_loader(batch_size = 4, num_workers=2):
                                     [transforms.ToTensor(),
                                     transforms.Normalize(mean, std)]
                                   )
+    
+    train_transform = transforms.Compose([
+                            transforms.ColorJitter(brightness=0.10, contrast=0.1, saturation=0.10, hue=0.1),
+                            transforms.RandomAffine(degrees=10, translate=(0.1,0.1), scale=(0.9, 1.1)),
+                            transforms.RandomRotation((-7.0,7.0), fill=(1,)),                          
+                            transforms.ToTensor(),
+                            transforms.Normalize(mean, std)
+                        ]))
 
-    trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+    trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=train_transform)
     train_loader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
 
     testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
