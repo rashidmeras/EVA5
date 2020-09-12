@@ -7,7 +7,7 @@ def check_predict(net, images):
     print('Predicted: ', ' '.join('%5s' % classes[predicted[j]] for j in range(4)))
     
     
-def check_test_accuracy(net, device):
+def check_test_accuracy(net, device, test_loader):
     correct = 0
     total = 0
     with torch.no_grad():
@@ -21,7 +21,7 @@ def check_test_accuracy(net, device):
     print('Accuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
     
     
-def check_classwise_accuracy(net, device):
+def check_classwise_accuracy(net, device, test_loader):
     class_correct = list(0. for i in range(10))
     class_total = list(0. for i in range(10))
     with torch.no_grad():
