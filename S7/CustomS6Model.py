@@ -22,7 +22,7 @@ class CustomS6Model(nn.Module):
     def __init__(self, gbn_en):
 
         #call parent class and initilize
-        super(Net, self).__init__()
+        super(Net, self).__init__(gbn_en)
         self.gbn_en = gbn_en
 
         print("Create the instance of the Net class with GBN = {}".format(gbn_en))
