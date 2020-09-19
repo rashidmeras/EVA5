@@ -8,6 +8,8 @@ def initiate_training(model, device, train_loader, epochs=5):
     scheduler = StepLR(optimizer, step_size=5, gamma=0.1)  
     criterion = nn.CrossEntropyLoss()
     
+    ep = 1
+    
     for epoch in range(epochs):  # loop over the dataset multiple times
     
         running_loss = 0.0
@@ -29,7 +31,11 @@ def initiate_training(model, device, train_loader, epochs=5):
             running_loss += loss.item()
             
             if i % 2000 == 1999:    # print every 2000 mini-batches
-                print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
-                running_loss = 0.0
+                if (ep%6 == 0):
+                    print('(*)[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000))
+                else:
+                    print('(*)[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, running_loss / 2000), end=" ")
+                running_loss = 0.0   
+                ep += 1            
     
     print('Finished Training')
