@@ -25,7 +25,6 @@ def initiate_training(model, device, train_loader, epochs=5):
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
-            scheduler.step()
     
             # print statistics
             running_loss += loss.item()
