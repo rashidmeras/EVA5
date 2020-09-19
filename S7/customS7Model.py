@@ -8,8 +8,8 @@ class Net(nn.Module):
         super(Net, self).__init__()
 
         # C1 
-        self.conv1a = nn.Sequential(nn.Conv2d(3,  32,3, padding=1),            nn.ReLU(), nn.BatchNorm2d(32))
-        self.conv1b = nn.Sequential(nn.Conv2d(32,128,3, padding=1, groups=32), nn.ReLU(), nn.BatchNorm2d(128)) 
+        self.conv1 = nn.Sequential(nn.Conv2d(3,  32,3, padding=1),            nn.ReLU(), nn.BatchNorm2d(32),
+                                   nn.Conv2d(32,128,3, padding=1, groups=32), nn.ReLU(), nn.BatchNorm2d(128)) 
         # MP
         self.pool1 = nn.Sequential( nn.MaxPool2d(2,2) ) 
 
@@ -34,8 +34,7 @@ class Net(nn.Module):
 
 
     def forward(self, x):
-        x = self.conv1a(x)
-        x = self.conv1b(x)
+        x = self.conv1(x)
         x = self.pool1(x)
         x = self.conv2(x)
         x = self.pool2(x)
@@ -46,5 +45,5 @@ class Net(nn.Module):
 
         x = self.gap(x)
         x = x.view(-1, 10)
-        return F.log_softmax(x)
+        return F.log_softmax(x, dim=1)
         
