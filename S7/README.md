@@ -12,7 +12,7 @@
 Result:
 A model was created meeting the given targets with and trained for 25 epochs
 * Total params: 926,794
-* Accuracy of the network on the 10000 test images: 9 %
+* Accuracy of the network on the 10000 test images: 81 %
 
 Submitted By: 
 * `Meras Pillai Rashid`
