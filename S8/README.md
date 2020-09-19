@@ -13,5 +13,5 @@ A ResNet18 model was re-used from the given repo and trained for 25 epochs
 
 
 Submitted By:
-Meras Pillai Rashid
-Samir Prasad
+1. Meras Pillai Rashid
+2. Samir Prasad
